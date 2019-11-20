@@ -1,8 +1,9 @@
-FROM codercom/coder-ser:v2
+FROM codercom/code-server:latest
 
 RUN sudo apt-get update && sudo apt-get -y install python-pip
 RUN sudo pip install -U PlatformIO
 
-ENTRYPOINT ["dumb-init", "code-server", "--host", "0.0.0.0"]
+VOLUME ["/home/coder/.local/share/code-server"]
+ENTRYPOINT ["dumb-init", "code-server", "--host", "0.0.0.0", "--auth", "none"]
 
 
